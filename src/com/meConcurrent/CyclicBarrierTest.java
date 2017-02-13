@@ -18,6 +18,10 @@ public class CyclicBarrierTest {
 		executor.submit(new Thread(new Runner(barrier, "1号选手")));
 		executor.submit(new Thread(new Runner(barrier, "2号选手")));
 		executor.submit(new Thread(new Runner(barrier, "3号选手")));
+		//测试循环使用
+		executor.submit(new Thread(new Runner(barrier, "4号选手")));
+		executor.submit(new Thread(new Runner(barrier, "5号选手")));
+		executor.submit(new Thread(new Runner(barrier, "6号选手")));
 
 		executor.shutdown();
 	}
@@ -43,11 +47,13 @@ class Runner implements Runnable {
 			System.out.println(name + " 准备好了...");
 			// barrier的await方法，在所有参与者都已经在此 barrier 上调用 await 方法之前，将一直等待。
 			barrier.await();
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (BrokenBarrierException e) {
 			e.printStackTrace();
 		}
 		System.out.println(name + " 起跑！");
+		
 	}
 }
