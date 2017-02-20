@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.alibaba.fastjson.JSON;
@@ -16,17 +17,15 @@ import sun.net.www.http.HttpClient;
 
 public class SyntaxTest {
 		public static void main(String[] args)   {
-			//Class<T>
-			//Object
-		//	ReentrantLock
-			PrintStream p;
-			try {
-				p = new PrintStream("黑蝴蝶.excel");
-				p.println("xxxx.asdasd阿萨德");
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+				try {
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
+}
+
+class Stdu{
+public	 int id;
+public String name;
 }

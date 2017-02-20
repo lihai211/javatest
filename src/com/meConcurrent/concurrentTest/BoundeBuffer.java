@@ -28,7 +28,7 @@ public class BoundeBuffer<E> {
 
 		int i=putPosition;
 		items[i]=x;
-		System.out.println("put"+i+":"+items[i]);
+		//System.out.println("put"+i+":"+items[i]);
 		putPosition=(++i==items.length)?0:i;
 
 		
@@ -36,8 +36,8 @@ public class BoundeBuffer<E> {
 	private synchronized  E   doExtract(){
 		int i=takePosition;
 	    E x=items[i];
-	    items[i]=null; //清除无效的内存引用,类似清除无效的引用计数,
-	    System.out.println("take"+i+":"+x);
+	    items[i]=null; //清除无效的内存引用,类似清除无效的引用计数,切记切记万分重要
+	   // System.out.println("take"+i+":"+x);
  		takePosition=(++i==items.length)?0:i;
  		return x;
 	}

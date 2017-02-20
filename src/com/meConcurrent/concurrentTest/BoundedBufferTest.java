@@ -45,11 +45,75 @@ public void testTakeBlocksWhenEmpty(){
 	
 	
 }
+
+//超大对象
+class  Big{ double[] data=new double[500000];}
+
+//测试队列是否存在泄漏
+void testLeak() throws InterruptedException{
+	int capacity=500;
+//	System.out.println("初始化队列前总堆内存大小:"+Runtime.getRuntime().totalMemory());
+//	System.out.println("初始化队列前总堆使用:"+(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()));
+//	System.out.println("初始化队列前总堆剩余:"+(Runtime.getRuntime().freeMemory()));
+	
+	BoundeBuffer<Big> bb=new BoundeBuffer<>(capacity);
+	
+	new Thread(new Runnable() {
+		@Override
+		public void run() {
+			for (int j = 0; j < 9999999; j++) {
+						for (int i = 0; i < 1; i++) {
+							try {
+								bb.put(new Big());
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+						
+						try {
+							Thread.sleep(50);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+		}
+	}).start();;
+
+	
+	new Thread(new Runnable() {
+		@Override
+		public void run() {
+			for (int j = 0; j < 9999999; j++) {
+						for (int i = 0; i < 1; i++) {
+							try {
+								bb.take();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+						
+						try {
+							Thread.sleep(50);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+		}
+	}).start();;
+
+
+	
+}
+
 	public static void main(String[] args) throws InterruptedException  {
 		BoundedBufferTest bTest=new BoundedBufferTest();
 	//	bTest.testIsEmptyWhenConstructed();
 		//bTest.testIsFullAfterPuts();
-		bTest.testTakeBlocksWhenEmpty();
+	//	bTest.testTakeBlocksWhenEmpty();
+		bTest.testLeak();
+		
 		
 	}
 }
