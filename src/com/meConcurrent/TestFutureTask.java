@@ -16,6 +16,7 @@ public class TestFutureTask {
 	        Task task = new Task();
 
 	        FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
+	        FutureTask<Integer> futureTask2 = new FutureTask<Integer>(task);
 
 	        executor.submit(futureTask);
 
@@ -81,7 +82,7 @@ public class TestFutureTask {
 
 	        System.out.println("子线程在进行计算");
 
-	        Thread.sleep(5000);
+	        Thread.sleep(5000000);
 
 	        int sum = 0;
 
