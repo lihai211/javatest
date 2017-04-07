@@ -20,7 +20,7 @@ public class TestClass {
 
 			// 测试Class.forName()
 			@SuppressWarnings("rawtypes")
-			Class testTypeForName = Class.forName("gc.TestClassType");
+			Class testTypeForName = Class.forName("gc.TestClassType");  //一定要加包名,否则找不到,System.out.println(System.getProperty("java.class.path"));用于输出默认类加载路径
 			System.out.println("testTypeForName---" + testTypeForName);
 
 			// 测试Object.getClass()

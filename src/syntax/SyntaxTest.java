@@ -3,7 +3,9 @@ package syntax;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLClassLoader;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +19,16 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.meConcurrent.TestSDF;
+
+import javassist.URLClassPath;
 import sun.net.www.http.HttpClient;
+import syntax.dynamic.reflex.StringBuilderTest;
 
  /**
  * @author admin
@@ -31,29 +38,41 @@ import sun.net.www.http.HttpClient;
 class SyntaxTest {
 	 volatile   int    sk[];
 
- public static void main(String[] args)   {
+ public static void main(String[] args) throws UnsupportedEncodingException   {   
+	 String   zhongguo=new      String("李世民".getBytes("utf-8"));     
+	   zhongguo=java.net.URLDecoder.decode(zhongguo,"utf-8");    
 	 
-	 	Integer [] arr=new Integer[] {1,2,3,4,5,6};
-	 	Integer []  outarr=new Integer [arr.length];
-	 	for(int i=arr.length-1;i>=0;i--){
-	 		outarr[arr.length-i-1]=arr[i];
-	 	}
-	 	
-	 	for(int i=0;i<outarr.length;i++){
-	 		System.out.println(outarr[i]);
-	 	}
-	 	
-	 	byte[] bytes = ByteBuffer.allocate(4).putInt(0xffffffff).array();
-	 	
-	 	System.out.println(int.class);
-	 	
-	   
-	 	
  }
 }
 
 
 class SuperClass{
+	static  List<Integer> getlist(){
+		List<Integer> list=new ArrayList<>();
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		return list;
+	}
+	
+	List<Integer>  getChangeList(){
+		List<Integer> list=SuperClass.getlist();
+		for(Integer node:list){
+			list.set(0, 444);
+			
+		}
+		List<SuperClass> sulist=new ArrayList<>();
+		SuperClass sc1=new SuperClass(3);
+		SuperClass sc2=new SuperClass(4);
+		sulist.add(sc1);
+		sulist.add(sc2);
+		
+		for(SuperClass node:sulist){
+			node.n+=100;
+		}
+		return list;
+		
+	}
     public int n;
     //SuperClass(){
     //    System.out.println("SuperClass()");
@@ -76,5 +95,7 @@ class SubClass extends SuperClass{
         System.out.println("SubClass(int n):"+n);
         this.n = n;
     }
+    
+    
 }
 

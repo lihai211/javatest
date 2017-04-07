@@ -21,3 +21,9 @@ public class testNull {
 		System.out.println(o);
 	}
 }
+
+
+class Stdu{
+	public int id;
+	public String  name;
+}
