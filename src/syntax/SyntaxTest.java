@@ -1,34 +1,12 @@
 package syntax;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.net.URLClassLoader;
-import java.nio.ByteBuffer;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.ScheduledExecutorService;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.meConcurrent.TestSDF;
-
-import javassist.URLClassPath;
-import sun.net.www.http.HttpClient;
-import syntax.dynamic.reflex.StringBuilderTest;
+import sun.misc.Unsafe;
 
  /**
  * @author admin
@@ -36,12 +14,30 @@ import syntax.dynamic.reflex.StringBuilderTest;
  */
 //临时随手代码测试类,可以忽略次类
 class SyntaxTest {
-	 volatile   int    sk[];
+static	int add(int n){
+		if(n<=1){
+			return 1;
+		}else {
+			return add(n-1)+n;
+		}
+	}
 
- public static void main(String[] args) throws UnsupportedEncodingException   {   
-	 String   zhongguo=new      String("李世民".getBytes("utf-8"));     
-	   zhongguo=java.net.URLDecoder.decode(zhongguo,"utf-8");    
+
+static	int recur(int n){
+	if(n<=1){
+		return 1;
+	}else {
+		return recur(n-1)*n;
+	}
+}
+	 volatile   int    sk[];
+	//   private static final Unsafe unsafe = Unsafe.getUnsafe();
+ public static void main(String[] args) throws UnsupportedEncodingException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException   {   
+
+	 	
 	 
+	 	
+	 	
  }
 }
 

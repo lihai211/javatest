@@ -68,7 +68,7 @@ public class RandomAccessFileTest {
 				File tmp=File.createTempFile("tmp", null);
 				tmp.deleteOnExit(); //在jvm退出时删除
 				
-				RandomAccessFile raf=new RandomAccessFile(fileName,"rws"); //rs立即写入磁盘,虽然性能差,方便调试
+				RandomAccessFile raf=new RandomAccessFile(fileName,"rws"); //rws立即写入磁盘,虽然性能差,方便调试
 				//创建一个临时文件夹来保存插入点后的数据
 				FileOutputStream tmpOut=new FileOutputStream(tmp);
 				FileInputStream tmpIn=new FileInputStream(tmp);
@@ -101,7 +101,7 @@ public class RandomAccessFileTest {
 		int seekPoint=20;
 		//RandomAccessFileTest.randomRed(path, seekPoint);
 	//	RandomAccessFileTest.randomWrite(path);
-		RandomAccessFileTest.insert(path, 0, "神的质疑"); //注意在制定的byte时,要小心,避免半个汉字的byte的下标,否则会乱码
+		RandomAccessFileTest.insert(path, 0, "神的质疑"); //注意在指定points时,要小心,避免半个汉字的byte的下标,否则会乱码
 		
 	}
 }
